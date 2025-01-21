@@ -20,14 +20,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       },
       child: Scaffold(
         resizeToAvoidBottomInset: true,
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.black,
         body: ListView(
           padding: const EdgeInsets.all(20.0),
           children: [
             SizedBox(height: 25.0),
             SvgPicture.asset(
               'assets/icons/logo.svg',
-              color: Colors.white,
             ),
             SizedBox(height: 30.0),
             Text(
@@ -216,13 +215,25 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },
-                                  child: Text('ОТМЕНА'),
+                                  child: Text(
+                                    'ОТМЕНА',
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
                                 ),
                                 TextButton(
                                   onPressed: () {
                                     Navigator.pop(context);
                                   },
-                                  child: Text('OK'),
+                                  child: Text(
+                                    'OK',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),

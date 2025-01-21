@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.black,
         body: Padding(
           padding: const EdgeInsets.all(36.0),
           child: Column(
@@ -50,7 +50,6 @@ class _LoginPageState extends State<LoginPage> {
               SvgPicture.asset(
                 'assets/icons/logo.svg',
                 // ignore: deprecated_member_use
-                color: Colors.white,
               ),
               SizedBox(height: 20.0),
               Text(

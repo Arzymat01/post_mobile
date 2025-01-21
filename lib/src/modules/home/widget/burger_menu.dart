@@ -4,6 +4,7 @@ import 'package:post_mobile/src/modules/home/screen/audit.dart';
 import 'package:post_mobile/src/modules/home/screen/cash_expense.dart';
 import 'package:post_mobile/src/modules/home/screen/cash_income.dart';
 import 'package:post_mobile/src/modules/home/screen/purchase.dart';
+import 'package:post_mobile/src/modules/home/screen/resorting.dart';
 import 'package:post_mobile/src/modules/home/screen/separation_act.dart';
 import 'package:post_mobile/src/modules/home/screen/transfer.dart';
 import 'package:post_mobile/src/modules/home/screen/under_report.dart';
@@ -28,7 +29,7 @@ class BurgerMenu extends StatelessWidget {
               child: Icon(Icons.person, size: 50, color: Colors.blue),
             ),
             decoration: BoxDecoration(
-              color: Colors.blue,
+              color: Colors.black,
 
               // ),
             ),
@@ -143,6 +144,18 @@ class BurgerMenu extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => SeparationAct(),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.assignment),
+            title: Text('Пресорт'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Resorting(),
                 ),
               );
             },

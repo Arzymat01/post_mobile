@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:post_mobile/src/modules/home/widget/burger_menu.dart';
 import 'package:post_mobile/src/modules/home/widget/table.dart';
 
-class SeparationAct extends StatefulWidget {
-  const SeparationAct({Key? key}) : super(key: key);
+class Resorting extends StatefulWidget {
+  const Resorting({Key? key}) : super(key: key);
 
   @override
-  _SeparationActState createState() => _SeparationActState();
+  _ResortingState createState() => _ResortingState();
 }
 
-class _SeparationActState extends State<SeparationAct> {
+class _ResortingState extends State<Resorting> {
   final List<Map<String, dynamic>> _rows = [
     {
       "Наименование": "",
@@ -53,7 +53,7 @@ class _SeparationActState extends State<SeparationAct> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: const Text(
-          'Акт распеделки',
+          'Пересот',
           style: TextStyle(
             color: Colors.white,
             fontSize: 28,
