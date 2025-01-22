@@ -66,6 +66,14 @@ class _CashExpenseState extends State<CashExpense> {
                         value: 'Касса сейф',
                         child: Text('Касса сейф'),
                       ),
+                      DropdownMenuItem(
+                        value: 'Касса Кристаллис',
+                        child: Text('Касса Кристаллис'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'Касса Зал',
+                        child: Text('Касса Зал'),
+                      ),
                     ],
                     onChanged: (value) {},
                   ),
@@ -76,6 +84,22 @@ class _CashExpenseState extends State<CashExpense> {
                       DropdownMenuItem(
                         value: 'Наличка',
                         child: Text('Наличка'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'Банк',
+                        child: Text('Банк'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'Долг',
+                        child: Text('Долг'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'Админ расход',
+                        child: Text('Админ расход'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'Бонусы',
+                        child: Text('Бонусы'),
                       ),
                     ],
                     onChanged: (value) {},
