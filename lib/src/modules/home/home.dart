@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:post_mobile/service/product_service.dart';
 import 'package:post_mobile/src/modules/home/widget/burger_menu.dart';
 import 'package:post_mobile/src/modules/home/widget/table.dart';
 
@@ -25,17 +26,56 @@ class _HomeState extends State<Home> {
         .every((value) => value != null && value.toString().isNotEmpty);
   }
 
-  void _updateCell(int index, String key, String value) {
+  void _updateCell(int index, String key, String value) async {
     setState(() {
       _rows[index][key] = value;
+    });
 
-      if (key == "Количество" || key == "Цена") {
-        final quantity = double.tryParse(_rows[index]["Количество"]) ?? 0.0;
-        final price = double.tryParse(_rows[index]["Цена"]) ?? 0.0;
-        _rows[index]["Сумма"] = (quantity * price).toStringAsFixed(2);
+    if (key == "Наименование" && value.isNotEmpty) {
+      try {
+        final products = await ApiService.searchProducts(value);
+
+        // Лог: API Жоопту көрүү
+        print("API Жооп: $products");
+
+        if (products.isNotEmpty) {
+          final product = products.first;
+
+          setState(() {
+            // Туура маалыматтарды орнотуу
+            _rows[index]["Остаток на складе"] = product.code.toString();
+            _rows[index]["Количество"] = product.remains.toString();
+            _rows[index]["Цена"] = product.price.toString();
+            _rows[index]["Сумма"] =
+                (product.remains * product.price).toStringAsFixed(2);
+          });
+        } else {
+          setState(() {
+            _rows[index]["Остаток на складе"] = "0";
+            _rows[index]["Количество"] = "0";
+            _rows[index]["Цена"] = "0";
+            _rows[index]["Сумма"] = "0.00";
+          });
+        }
+      } catch (e) {
+        print("Error fetching product: $e");
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Ката кетти: $e")),
+        );
       }
+    }
 
-      if (index == _rows.length - 1 && _isRowFilled(_rows[index])) {
+    if (key == "Количество" || key == "Цена") {
+      final quantity = double.tryParse(_rows[index]["Количество"]) ?? 0.0;
+      final price = double.tryParse(_rows[index]["Цена"]) ?? 0.0;
+
+      setState(() {
+        _rows[index]["Сумма"] = (quantity * price).toStringAsFixed(2);
+      });
+    }
+
+    if (index == _rows.length - 1 && _isRowFilled(_rows[index])) {
+      setState(() {
         _rows.add({
           "Наименование": "",
           "Остаток на складе": "",
@@ -43,8 +83,8 @@ class _HomeState extends State<Home> {
           "Цена": "",
           "Сумма": "",
         });
-      }
-    });
+      });
+    }
   }
 
   @override
@@ -79,7 +119,7 @@ class _HomeState extends State<Home> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10), // Border radius
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                   child: const Text(
@@ -97,7 +137,7 @@ class _HomeState extends State<Home> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10), // Border radius
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                   child: const Text(

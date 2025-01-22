@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class CustomDataTable extends StatelessWidget {
   final List<Map<String, dynamic>> rows;
@@ -45,41 +44,13 @@ class CustomDataTable extends StatelessWidget {
                     ),
                   ),
                   DataCell(
-                    TextFormField(
-                      initialValue: row["Остаток на складе"],
-                      onChanged: (value) =>
-                          onCellUpdate(index, "Остаток на складе", value),
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                      ),
-                    ),
+                    Text(row["Остаток на складе"] ?? ""),
                   ),
                   DataCell(
-                    TextFormField(
-                      initialValue: row["Количество"],
-                      onChanged: (value) =>
-                          onCellUpdate(index, "Количество", value),
-                      keyboardType: TextInputType.number,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                      ),
-                    ),
+                    Text(row["Количество"] ?? ""), // remains
                   ),
                   DataCell(
-                    TextFormField(
-                      initialValue: row["Цена"],
-                      onChanged: (value) => onCellUpdate(index, "Цена", value),
-                      keyboardType: TextInputType.number,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.allow(
-                          RegExp(r'^\d*\.?\d*'),
-                        )
-                      ],
-                      decoration: const InputDecoration(
-                        border: InputBorder.none,
-                      ),
-                    ),
+                    Text(row["Цена"] ?? ""), // price
                   ),
                   DataCell(Text(row["Сумма"] ?? "")),
                 ],
